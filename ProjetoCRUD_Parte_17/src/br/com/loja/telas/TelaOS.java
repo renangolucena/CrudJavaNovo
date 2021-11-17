@@ -65,11 +65,27 @@ public class TelaOS extends javax.swing.JInternalFrame {
             pst.setString(7, txtOsValor.getText());
             pst.setString(8, txtIdCli.getText());
             
-        }
+        if(txtIdCli.getText().isEmpty() || txtOsEquip.getText().isEmpty() || txtOsDef.getText().isEmpty()){
         
-        if(txtIdCli.getText().isEmpity())
+        JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios!");
+        
+          }else {
+            int adicionado = pst.executeUpdate();
+            
+            if(adicionado>0){
+            JOptionPane.showMessageDialog(null, "Ordem de Serviço Emitida Com sucesso");
+            
+            txtIdCli.setText(null);
+            txtOsEquip.setText(null);
+            txtOsDef.setText(null);
+            txtOsTec.setText(null);
+            txtOsValor.setText(null);
+            }
+            }
     
-        
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                }
     }
     
    
@@ -445,7 +461,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblClientesMouseClicked
 
     private void rbtOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOsActionPerformed
-       tipo = "OS"
+       tipo = "OS";
     }//GEN-LAST:event_rbtOsActionPerformed
 
 
